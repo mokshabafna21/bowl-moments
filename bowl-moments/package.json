@@ -1,0 +1,26 @@
+{
+  "name": "bowl-moments",
+  "version": "1.0.0",
+  "description": "A coming soon website for Bowl Moments, a healthy bowl business.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "lite-server",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "keywords": [
+    "bowl",
+    "healthy",
+    "food",
+    "business",
+    "coming soon"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

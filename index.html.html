@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bowl Moments – Healthy bowls for busy college days</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #fff7e4;           /* matches beige logo background */
+      --bg-alt: #f7f0e0;
+      --primary: #94b45b;      /* soft leafy green */
+      --primary-dark: #6f8e3e;
+      --accent: #e4a64d;       /* warm golden text */
+      --text-main: #2f2c25;
+      --text-muted: #7a756b;
+      --card-radius: 18px;
+      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --max-width: 1000px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 85%, #ffffff 15%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.7rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .brand-text-main {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 1rem;
+    }
+
+    .brand-text-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 0.35rem 0.9rem !important;
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(148, 180, 91, 0.45);
+    }
+
+    /* LAYOUT / SECTIONS */
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 2.5rem 1.25rem;
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 36rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.18rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(148, 180, 91, 0.12);
+      border: 1px solid rgba(148, 180, 91, 0.3);
+      font-size: 0.7rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 2.2rem;
+      padding-bottom: 2.8rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 1.9rem;
+    }
+
+    .hero-heading {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 2rem;
+      line-height: 1.15;
+      margin: 0.6rem 0 0.6rem;
+      color: var(--text-main);
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 28rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.3rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(111, 142, 62, 0.45);
+    }
+
+    .btn-primary span {
+      font-size: 1.05rem;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-radius: 999px;
+      border: 1px dashed rgba(0, 0, 0, 0.16);
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+    }
+
+    .hero-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+    }
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: 28px;
+      padding: 1.3rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card-list li {
+      margin-bottom: 0.25rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: baseline;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 999px;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    /* CARDS / GRIDS */
+    .card {
+      background: #fffdf7;
+      border-radius: var(--card-radius);
+      padding: 1.2rem 1.25rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .muted-card {
+      background: var(--bg-alt);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .feature-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      padding: 0.1rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .bowl-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .bowl-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* HOW IT WORKS STEPS */
+    .steps-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .step-card {
+      background: #fffdf7;
+      border-radius: var(--card-radius);
+      padding: 1.1rem 1.1rem 1.05rem;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(148, 180, 91, 0.15);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 0.15rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* PREORDER */
+    .preorder {
+      background: linear-gradient(135deg, rgba(148, 180, 91, 0.08), rgba(228, 166, 77, 0.09));
+    }
+
+    .pre-card {
+      border-radius: 26px;
+      padding: 1.6rem 1.6rem 1.4rem;
+      background: #fffdf7;
+      box-shadow: var(--shadow-soft);
+      max-width: 36rem;
+    }
+
+    .pre-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0.6rem 0 1.1rem;
+    }
+
+    .pre-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+
+    .pre-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .btn-outline {
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      padding: 0.6rem 1.1rem;
+      font-size: 0.82rem;
+      background: #fffaf1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--text-main);
+    }
+
+    .btn-outline span {
+      font-size: 1rem;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #26231b;
+      color: #f8f3e6;
+      padding: 1.9rem 1.25rem 1.4rem;
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      gap: 1.1rem;
+      font-size: 0.8rem;
+    }
+
+    .footer-brand {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-muted {
+      color: #c9c2b5;
+      font-size: 0.78rem;
+    }
+
+    .footer-heading {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: #f4e9d4;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 1rem;
+      padding-top: 0.7rem;
+      font-size: 0.72rem;
+      color: #b7afa3;
+    }
+
+    /* RESPONSIVE */
+    @media (min-width: 720px) {
+      .hero {
+        padding-top: 3.2rem;
+        padding-bottom: 3.6rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        align-items: center;
+      }
+
+      .hero-heading {
+        font-size: 2.4rem;
+      }
+
+      .hero-card {
+        margin-left: auto;
+        max-width: 320px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-inner {
+        grid-template-columns: 1.4fr 1fr 1.1fr;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <!-- Change src if your logo path is different -->
+        <img src="assets/logo-bowl-moments.png" alt="Bowl Moments logo" />
+        <div>
+          <div class="brand-text-main">Bowl Moments</div>
+          <div class="brand-text-sub">Healthy veg bowls • EST. 2026</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#menu">Menu</a>
+        <a href="#preorder" class="nav-cta">Pre-order</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="section-inner hero-grid">
+        <div>
+          <div class="pill">
+            <span>Near Presidency University, Bangalore</span>
+          </div>
+
+          <h1 class="hero-heading">
+            Healthy bowls for <span class="hero-highlight">busy college days.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Veg-only, student-priced bowls made fresh for Presidency University students —
+            so your plate has more nutrients than noodles.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#preorder" class="btn-primary" data-preorder-whatsapp>
+              <span>🥗</span>
+              <span>Pre-order for tomorrow</span>
+            </a>
+            <a href="#how-it-works" class="btn-secondary">
+              See how it works
+            </a>
+          </div>
+
+          <p class="hero-meta">
+            Orders close <strong>24 hours in advance</strong> to keep every bowl fresh.
+          </p>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-title">Why we started Bowl Moments</div>
+          <ul class="hero-card-list">
+            <li>
+              <div class="dot"></div>
+              <div>Too much canteen food, too little nutrition.</div>
+            </li>
+            <li>
+              <div class="dot"></div>
+              <div>Low energy, hair fall, and “take vitamins” advice from doctors.</div>
+            </li>
+            <li>
+              <div class="dot"></div>
+              <div>We wanted bowls that are clean, affordable, and realistic for college life.</div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- WHY IT EXISTS -->
+    <section>
+      <div class="section-inner">
+        <div class="section-eyebrow">The student problem</div>
+        <h2 class="section-title">Why Bowl Moments exists</h2>
+        <p class="section-description">
+          College food shouldn’t drain your energy or your wallet. At Presidency University,
+          we saw the same pattern every day: skipped breakfasts, late-night Maggi, and
+          random oily snacks between classes. Fast, yes. Nourishing, not really.
+        </p>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="feature-title">What’s going wrong</div>
+            <p class="feature-body">
+              Low energy in lectures and labs, hair fall and skin issues, and money
+              spent on food that fills you up but doesn’t actually nourish you.
+            </p>
+          </div>
+          <div class="card muted-card">
+            <div class="feature-title">Our simple fix</div>
+            <p class="feature-body">
+              Balanced vegetarian bowls that are affordable enough to eat often,
+              easy to pre-order, and built to quietly cover your everyday nutrition.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT US -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-eyebrow">Our story</div>
+        <h2 class="section-title">Two students, one health wake-up call</h2>
+
+        <div class="grid">
+          <div class="card">
+            <p class="feature-body">
+              We’re two students from <strong>Presidency University, Bangalore</strong> who
+              hit the same health wall: low energy, frequent fatigue, and scary levels of hair fall.
+              After blood tests and doctor visits, we kept hearing the same thing —
+              <strong>“You need better nutrition, not just supplements.”</strong>
+            </p>
+            <p class="feature-body">
+              That’s when we realised most of our meals came from canteen counters or
+              quick delivery apps. Fast, tasty, but low on vegetables, protein, and actual nutrients.
+              <strong>Bowl Moments</strong> started as a way to fix our own plates and slowly
+              became a way to help other students do the same.
+            </p>
+          </div>
+
+          <div class="card muted-card">
+            <div class="feature-title">Our mission</div>
+            <ul class="hero-card-list">
+              <li>
+                <div class="dot"></div>
+                <div>Make healthy eating genuinely easy for busy students.</div>
+              </li>
+              <li>
+                <div class="dot"></div>
+                <div>Keep bowls student-priced, not “premium health food”.</div>
+              </li>
+              <li>
+                <div class="dot"></div>
+                <div>Cut the junk and focus on clean, vegetarian ingredients.</div>
+              </li>
+              <li>
+                <div class="dot"></div>
+                <div>Build a student-to-student food brand you can actually trust.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <div class="section-inner">
+        <div class="section-eyebrow">Simple flow</div>
+        <h2 class="section-title">How it works</h2>
+        <p class="section-description">
+          No last-minute chaos. No “what do I eat today?” panic. Just a small, predictable ritual
+          that keeps you fed and functioning.
+        </p>
+
+        <div class="steps-list">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div>
+              <div class="step-title">Choose your bowl</div>
+              <p class="step-text">
+                Pick from a small, curated menu of veg-only bowls built for daily eating —
+                not just cheat days.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div>
+              <div class="step-title">Pre-order 24 hours in advance</div>
+              <p class="step-text">
+                We only accept pre-orders for the next day, so we buy just enough fresh
+                vegetables. No old stock, no random leftovers.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div>
+              <div class="step-title">We cook fresh, in small batches</div>
+              <p class="step-text">
+                Each bowl is prepared with simple recipes, minimal oil, and no preservatives.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div>
+              <div class="step-title">Pick-up or nearby delivery</div>
+              <p class="step-text">
+                Pick up your bowl near Presidency University, or opt for nearby delivery
+                during our time slots.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu">
+      <div class="section-inner">
+        <div class="section-eyebrow">Sneak peek</div>
+        <h2 class="section-title">Menu (work in progress)</h2>
+        <p class="section-description">
+          We’re still testing and refining recipes with real students at Presidency University.
+          Here’s a sneak peek of what we’re building.
+        </p>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="bowl-title">Protein Bowl</div>
+            <p class="bowl-desc">
+              For days with back-to-back labs. Lentils, beans, paneer, and mixed veggies
+              to keep you full and focused.
+            </p>
+            <span class="feature-tag">High protein • Veg-only</span>
+          </div>
+
+          <div class="card">
+            <div class="bowl-title">Fiber Bowl</div>
+            <p class="bowl-desc">
+              For when your body needs a reset. Seasonal vegetables, whole grains,
+              and crunchy toppings for better digestion.
+            </p>
+            <span class="feature-tag">Fiber rich • Gut-friendly</span>
+          </div>
+
+          <div class="card">
+            <div class="bowl-title">Comfort Bowl</div>
+            <p class="bowl-desc">
+              Rainy-day and assignment-week comfort. Warm, mildly spiced, and soothing
+              — comfort food without the guilt.
+            </p>
+            <span class="feature-tag">Light • Feel-good</span>
+          </div>
+
+          <div class="card muted-card">
+            <div class="bowl-title">Daily Basics Bowl (coming soon)</div>
+            <p class="bowl-desc">
+              A simple everyday bowl you can eat almost daily without feeling heavy.
+            </p>
+            <span class="feature-tag">Everyday friendly</span>
+          </div>
+        </div>
+
+        <p class="section-description" style="margin-top: 1.1rem;">
+          <strong>Menu evolving — research in progress.</strong>
+          We collect feedback on taste, energy, and price, then keep tweaking.
+        </p>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section>
+      <div class="section-inner">
+        <div class="section-eyebrow">What makes us different</div>
+        <h2 class="section-title">Why choose Bowl Moments?</h2>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="feature-title">100% vegetarian</div>
+            <p class="feature-body">
+              No confusion. Every bowl is completely vegetarian, always.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="feature-title">Fresh vegetables only</div>
+            <p class="feature-body">
+              We shop <strong>after</strong> we see your orders. No frozen mystery mixes.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="feature-title">Student-run & student-priced</div>
+            <p class="feature-body">
+              Built by Presidency University students who understand tight budgets,
+              late submissions, and exam weeks.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="feature-title">No preservatives, no junk</div>
+            <p class="feature-body">
+              No artificial flavours, packet masalas, or shortcuts. Just clean, veg food.
+            </p>
+          </div>
+
+          <div class="card muted-card">
+            <div class="feature-title">Nutrition-focused</div>
+            <p class="feature-body">
+              Bowls designed to support energy, focus, and basic micronutrients,
+              not just taste.
+            </p>
+          </div>
+        </div>
+
+        <p class="section-description" style="margin-top: 1.1rem;">
+          We’re not trying to replace your favourite chaat or momos —
+          just to make sure your everyday food quietly takes care of you.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRE-ORDER -->
+    <section id="preorder" class="preorder">
+      <div class="section-inner">
+        <div class="pre-card">
+          <div class="section-eyebrow">Ready to eat better?</div>
+          <h2 class="section-title">Pre-order your bowl</h2>
+          <p class="pre-text">
+            We currently take <strong>pre-orders only</strong>, so we can cook fresh,
+            small batches for the next day. Share your details and we’ll send you
+            tomorrow’s menu and time slots.
+          </p>
+
+          <div class="pre-cta-row">
+            <!-- Replace # with your real links or just let JS handle it -->
+            <a href="#" class="btn-primary" data-preorder-whatsapp>
+              <span>📲</span>
+              <span>Pre-order via WhatsApp</span>
+            </a>
+            <a href="#" class="btn-outline" data-preorder-form>
+              <span>📝</span>
+              <span>Fill Google Form</span>
+            </a>
+          </div>
+
+          <p class="pre-note">
+            Note: Pre-orders close by <strong>8 PM</strong> for the next day.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Bowl Moments</div>
+        <div class="footer-muted">Made by students, for students.</div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Location</div>
+        <div class="footer-muted">
+          Near Presidency University, Bangalore<br />
+          Serving hostel students and nearby areas.
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Contact & socials</div>
+        <div class="footer-muted">
+          WhatsApp: <a href="#" data-preorder-whatsapp-link>+91-XXXXXXXXXX</a><br />
+          Instagram: <a href="#">@bowlmoments</a><br />
+          Email: <a href="mailto:bowlmoments@example.com">bowlmoments@example.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span data-year>2026</span> Bowl Moments. All rights reserved.
+    </div>
+  </footer>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+  // ---- UPDATE THESE VALUES WITH YOUR REAL DETAILS ----
+  const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // e.g. 919876543210 (no +, no spaces)
+  const GOOGLE_FORM_URL = "https://forms.gle/your-form-id"; // your real Google Form link
+
+  const DEFAULT_MESSAGE =
+    "Hi Bowl Moments! I'd like to pre-order a bowl for tomorrow. Please share today's menu and time slots.";
+
+  // Smooth scroll for internal nav links
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href").slice(1);
+      if (!targetId) return;
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+
+      event.preventDefault();
+      targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  // Open WhatsApp with pre-filled message
+  function openWhatsApp() {
+    if (!WHATSAPP_NUMBER || WHATSAPP_NUMBER.includes("X")) {
+      alert("Please set your real WhatsApp number in the code first.");
+      return;
+    }
+    const encodedMsg = encodeURIComponent(DEFAULT_MESSAGE);
+    const waUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodedMsg;
+    window.open(waUrl, "_blank");
+  }
+
+  // Attach to all WhatsApp preorder buttons/links
+  document.querySelectorAll("[data-preorder-whatsapp], [data-preorder-whatsapp-link]").forEach((el) => {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      openWhatsApp();
+    });
+  });
+
+  // Google Form button
+  document.querySelectorAll("[data-preorder-form]").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (!GOOGLE_FORM_URL || GOOGLE_FORM_URL.includes("your-form-id")) {
+        alert("Please set your real Google Form URL in the code first.");
+        return;
+      }
+      window.open(GOOGLE_FORM_URL, "_blank");
+    });
+  });
+
+  // Auto-update footer year
+  const yearSpan = document.querySelector("[data-year]");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+</script>
+
+</body>
+</html>
